@@ -43,8 +43,8 @@ def train_gan(device, D, G, dataloader, num_epochs, lr_G, lr_D, latent_dim, fixe
     for w in G.parameters(): nn.init.normal_(w, 0., 0.02)
     D = D.to(device)
     G = G.to(device)
-    # trainer_D = torch.optim.Adam(discriminator.parameters(), lr=lr_D, betas=(0.5,0.999))
-    # trainer_G = torch.optim.Adam(generator.parameters(), lr=lr_G, betas=(0.5,0.999))
+    # trainer_D = torch.optim.Adam(D.parameters(), lr=lr_D, betas=(0.5,0.999))
+    # trainer_G = torch.optim.Adam(G.parameters(), lr=lr_G, betas=(0.5,0.999))
     trainer_D = torch.optim.SGD(D.parameters(), lr=lr_D, momentum=0.5)
     trainer_G = torch.optim.SGD(G.parameters(), lr=lr_G, momentum=0.5)
 
