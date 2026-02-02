@@ -14,7 +14,8 @@ def update_discriminator(x, y, z, D, G, criterion, trainer_D):
     trainer_D.zero_grad()
 
     real_y = D(x, y)
-    fake_y = D(G(z, y), y)
+    fake_x = G(z, y)
+    fake_y = D(fake_x.detach(), y)
     loss_D = (criterion(real_y, ones.reshape(real_y.shape)) +
                           criterion(fake_y, zeros.reshape(fake_y.shape))) / 2
     loss_D.backward()
